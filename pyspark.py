@@ -3,7 +3,7 @@ import urllib
 
 # COMMAND ----------
 
-# DBTITLE 1,Mount S3 with Databricks
+# Mount S3 with Databricks
 
 ACCESS_KEY = "****"
 SECRET_KEY = "****"
@@ -17,13 +17,10 @@ dbutils.fs.mount("s3a://%s:%s@%s" % (ACCESS_KEY, ENCODED_SECRET_KEY, AWS_BUCKET_
 
 display(dbutils.fs.ls("/mnt/S3data"))
 
-# COMMAND ----------
-
-# DBTITLE 1,Read the Mounted Data
+# Read the Mounted Data
 file_location = "dbfs:/mnt/S3data/data/zomato.csv"
 file_type = "csv"
 
-##csv options
 infer_schema = "true"
 first_row_header = "true"
 delimeter = ","
@@ -37,7 +34,7 @@ df = spark.read.format(file_type) \
 
 # COMMAND ----------
 
-# DBTITLE 1,Display the Records
+## Display the Records
 display(df)
 
 # COMMAND ----------
